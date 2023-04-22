@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -13,6 +14,14 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         PlayerMovement();
+        if (transform.position.x <= -11.55)
+        {
+            transform.position = new Vector3 (-11.54f, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x >= 11.55)
+        {
+            transform.position = new Vector3 (11.54f, transform.position.y, transform.position.z);
+        }
     }
 
     public void PlayerMovement()
@@ -46,6 +55,7 @@ public class PlayerManager : MonoBehaviour
         {
             Debug.Log($"colidiu");
             Destroy(gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
     
